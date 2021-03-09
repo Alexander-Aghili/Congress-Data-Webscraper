@@ -14,6 +14,7 @@ The point of this file is as follows:
 All of this information is easily accessible. This will only need to be updated after election day every two years.
 
 It will also
+
 2. Retrieve the data from https://www.house.gov and get every represenatives:
 
         A) Name
