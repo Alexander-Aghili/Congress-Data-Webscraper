@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
-import urllib3
+import requests
 
-page_string = " https://www.Senate.gov"
-page = urllib3.proxy_from_url(page_string)
+senate_URL = " https://www.Senate.gov"
+senate_page = requests.get(senate_URL)
+
+senateSoup = BeautifulSoup(senate_page, 'html.parser')
 
 
-senta = BeautifulSoup(page, 'html.parser')
+
