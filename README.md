@@ -1,20 +1,20 @@
 # congress_data_webscraper
 
 The point of this file is as follows:
-1. Will retrieve data from https://www.senate.gov and get every senators
+1. Will retrieve data from https://www.senate.gov and get every senators:
 
-    A) Name
+        A) Name
 
-    B) State
+        B) State
 
-    C) Party
+        C) Party
 
-    D) Website
+        D) Website
 
 All of this information is easily accessible. This will only need to be updated after election day every two years.
 
 It will also
-2. Retrieve the data from https://www.house.gov and get every represenatives
+2. Retrieve the data from https://www.house.gov and get every represenatives:
 
     A) Name
 
