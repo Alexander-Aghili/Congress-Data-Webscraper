@@ -4,7 +4,7 @@ import requests
 senate_URL = " https://www.senate.gov/senators/index.htm"
 senate_page = requests.get(senate_URL).text
 senateSoup = BeautifulSoup(senate_page, 'html.parser')
-information = []
+senate = []
 
 def get_info(tr, house):
     info = tr.find('a')
@@ -41,17 +41,17 @@ for tr in senateSoup.findAll('table')[0].findAll('tr'):
     if header:
         header = False
     else:
-        information.append(get_info(tr, False))
+        senate.append(get_info(tr, False))
 
 house_URL = "https://www.house.gov/representatives"
 house_page = requests.get(house_URL).text
 houseSoup = BeautifulSoup(house_page, 'html.parser')
-information = []
+house = []
 
 for table in houseSoup.findAll('table'):
     for tr in table.findAll('tr'):
         try:
-            get_info(tr, True)
-            #information.append(get_info(tr, True))
+            house.append(get_info(tr, True))
         except:
             pass
+
