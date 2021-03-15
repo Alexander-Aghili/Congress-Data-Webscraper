@@ -19,7 +19,7 @@ def get_info(tr, house):
             district = temp
         state = district.split()[0]
         if state == "South" or state == "North" or state == "New":
-            state = state + " " + district.split[1]
+            state = state + " " + district.split()[1]
 
         partyShort = tr.find_all("td")[2].text.strip()
         party = ""
