@@ -1,6 +1,30 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+import matplotlib
+from PIL import Image
+import urllib
+
+image_URL = " https://www.congress.gov/members?q={%22congress%22:[%22117%22]}&searchResultViewType=expanded"
+image_page = requests.get(image_URL).text
+imageSoup = BeautifulSoup(image_page, 'html.parser')
+
+imagesarray = []
+
+for imgnum, img in enumerate(imageSoup.findAll('img')):
+    if imgnum % 2 == 0:
+        imgsplit = str(img).split("\"")
+        if imgsplit[3].endswith("jpg"):
+            image = "https://www.congress.gov/" + imgsplit[3].strip()
+            splitname = imgsplit[1].split(",")
+            name = splitname[1].strip() + " " + splitname[0].strip()
+            imagesarray.append([name, image])
+
+def getimage (name):
+    for imageinfo in imagesarray:
+        if imageinfo[0].strip() == name.strip():
+            return Image.open(requests.get(imageinfo[1], stream=True).raw)
+            # return imageinfo[1]
 
 senate_URL = " https://www.senate.gov/senators/index.htm"
 senate_page = requests.get(senate_URL).text
@@ -29,11 +53,11 @@ def get_info(tr, house):
         else:
             party = "Democratic"
 
-        current = [realname, state, party, district, url]
+        current = [realname, state, party, district, url, getimage(realname)]
     else:
         state = tr.find_all("td")[1].text
         party = tr.find_all("td")[2].text
-        current = [realname, state, party, url]
+        current = [realname, state, party, url, getimage(realname)]
     return current
 
 
